@@ -1,5 +1,14 @@
 package data;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -52,14 +61,43 @@ public class ItemTable {
         
 		TableColumn<Item, Integer> todaySellCol = new TableColumn<Item, Integer>("TODAY SELL");
 		todaySellCol.setMinWidth(150);
-		todaySellCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("price"));
+		todaySellCol.setCellValueFactory(new PropertyValueFactory<Item, Integer>("todaySell"));
 		todaySellCol.setReorderable(false);
 		todaySellCol.setSortable(false);
         
         tableView.setItems(data) ;
         tableView.getColumns().addAll(idCol,codeCol,nameCol,barcodeCol,priceCol,todaySellCol) ;
+        
+        this.readCSV();
 		
 	}
+	
+	public void readCSV() {
+		int counter = 0 ;
+		try (BufferedReader br = Files.newBufferedReader(Paths.get("C:\\Users\\User\\napat_workspace\\Visart\\item.csv"))) {
+
+		    // CSV file delimiter
+		    String DELIMITER = ",";
+
+		    // read the file line by line
+		    String line;
+		    while ((line = br.readLine()) != null) {
+
+		        // convert line into columns
+		        String[] columns = line.split(DELIMITER);
+		        if (counter != 0) {
+		        	System.out.println(line);
+		        	data.add(new Item(columns)) ;
+		        }
+		        counter += 1 ;
+		    }
+
+		} catch (IOException ex) {
+		    ex.printStackTrace();
+		}
+	}
+	
+	
 
 	public TableView<Item> getTableView() {
 		return tableView;

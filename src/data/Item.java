@@ -24,6 +24,18 @@ public class Item {
 		this.currentStock = lastImport-todaySell ;
 	}
 	
+	public Item(String[] col) {
+		super();
+		this.name = col[2];
+		this.id = col[0];
+		this.code = col[1];
+		this.barcode = col[3];
+		this.price = Double.parseDouble(col[4]);
+		this.lastImport = Integer.parseInt(col[5]);
+		this.todaySell = Integer.parseInt(col[7]);
+		this.currentStock = this.lastImport-this.todaySell ;
+	}
+	
 	public Item() {
 		super() ;
 		this.name = "default" ;
