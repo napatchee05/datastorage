@@ -7,10 +7,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Control;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import data.ControlPane;
 
 public class Main extends Application {
 	
@@ -24,6 +26,7 @@ public class Main extends Application {
 		ItemTable itemTable = new ItemTable() ;
 		Pane root = new Pane() ;
 		HBox grid = new HBox() ;
+		ControlPane controlPane = new ControlPane() ;
 		root.getChildren().add(grid) ;
 		Scene scene = new Scene(root) ;
 //		itemTable.getData().add(new Item()) ;
@@ -34,7 +37,7 @@ public class Main extends Application {
 		HBox.setMargin(tb, new Insets(8,8,8,8));
 		itemTable.setTableProperty() ;
 		grid.getChildren().add(tb) ;
-		
+		grid.getChildren().add(controlPane);
 		Button getAnalytics = new Button("Get Analyticals View") ;
 		getAnalytics.setOnAction(e -> {
 			System.out.println("Wait");

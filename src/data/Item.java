@@ -10,6 +10,7 @@ public class Item {
 	private int lastImport ;
 	private int todaySell ;
 	private int currentStock ;
+	private double todayIncome ;
 	
 	public Item(String name, String id, String code, String barcode, float price, 
 			int lastImport, int todaySell, int currentStock) {
@@ -22,6 +23,7 @@ public class Item {
 		this.lastImport = lastImport;
 		this.todaySell = todaySell;
 		this.currentStock = lastImport-todaySell ;
+		this.todayIncome = this.todaySell * this.price ;
 	}
 	
 	public Item(String[] col) {
@@ -34,6 +36,7 @@ public class Item {
 		this.lastImport = Integer.parseInt(col[5]);
 		this.todaySell = Integer.parseInt(col[7]);
 		this.currentStock = this.lastImport-this.todaySell ;
+		this.todayIncome = this.todaySell * this.price ;
 	}
 	
 	public Item() {
@@ -46,6 +49,7 @@ public class Item {
 		this.lastImport = 100 ;
 		this.todaySell = 0 ;
 		this.currentStock = 20 ;
+		this.todayIncome = this.todaySell * this.price ;
 	}
 
 	public String getName() {
